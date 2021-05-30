@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+<head> 
+    <link href="index.css" rel="stylesheet"/>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+    />
+    
+    <title>Getting Started: Serving Web Content</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Dice Roller</h1>
+            <p>Just some basics tests along with some minor bootstrap.</p>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 border-right">
+                <form id="diceForm">
+                    <div id="diceInput" class="form-group row">
+                        <label class="col-sm-2 col-form-label">
+                            Dice:
+                        </label>
+                        <div class="col-sm-10">
+                            <input class="form-control" list="diceList" id="dice" /></input>
+                            <datalist id="diceList">
+                                <option></option>
+                                <option>d4</option>
+                                <option>d6</option>
+                                <option>d8</option>
+                                <option>d12</option>
+                                <option>d20</option>
+                                <option>d100</option>
+                            </datalist>
+                        </div>
+                    </div>
+                    <div id="quantityInput" class="form-group row">
+                        <label class="col-sm-2 col-form-label">Quantity:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="quantity">
+                        </div>
+                    </div>
+                    <div id="modInput" class="form-group row">
+                        <label class="col-sm-2 col-form-label">Modifier:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="mod">
+                        </div>
+                    </div>
+                    <div id="advInput" class="form-group row">
+                        <label class="col-sm-2 col-form-label">Advantage:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="checkbox" onclick="disableExplosion(this)" id="adv">
+                        </div>
+                    </div>
+                    <div id="disInput" class="form-group row">
+                        <label class="col-sm-2 col-form-label">Disadvantage:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="checkbox" onclick="disableExplosion(this)" id="dis">
+                        </div>
+                    </div>
+                    <div id="explodeInput" class="form-group row">
+                        <label class="col-sm-2 col-form-label">Explode At (>):</label>
+                        <div class="col-sm-7">
+                            <input class="form-control" type="text" id="exp">
+                        </div>
+                        <div class="col-sm-3">
+                            <input class="form-control" type="checkbox" id="expAbove">
+                        </div>
+                    </div>
+                    <div id="dcInput" class="form-group row">
+                        <label class="col-sm-2 col-form-label">DC:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" id="dc">
+                        </div>
+                    </div>
+                    <input  class="btn btn-primary mb-2" id="iframeRefresher" type="button" value="Roll">
+                </form>   
+            </div>
+
+            <div class="col-sm-4">
+                <div class="display">
+                    <div class="embed-responsive embed-responsive-1by1">
+                        <iframe class="embed-responsive-item" id="inlineFrameExample"
+                            title="Inline Frame Example"
+                            src="/roll">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr/>
+
+
+        
+        <div class="row justify-content-center">
+            <div class="col-sm-10">
+                    <div class="btn-group d-flex" role="group">
+                        <button id="bold" type="button" class="btn btn-secondary w-100" title="Bold" onclick="updateButton(this)"><i class="fa fa-bold"></i></button>
+                        <button id="italics" type="button" class="btn btn-secondary w-100" title="Italics" onclick="updateButton(this)"><i class="fa fa-italic"></i></button>
+                        <button id="underline" type="button" class="btn btn-secondary w-100" title="Underline" onclick="updateButton(this)"><i class="fa fa-underline"></i></button>
+                        <button id="strikethrough" type="button" class="btn btn-secondary w-100" title="Strikethrough" onclick="updateButton(this)"><i class="fa fa-strikethrough"></i></button>
+                        <button type="button" class="btn btn-secondary mr-0 ml-0 pr-0 pl-0" disabled></button>
+                        <button id="indent" type="button" class="btn btn-secondary w-100" title="Indent"><i class="fa fa-indent"></i></button>
+                        <button id="link" type="button" class="btn btn-secondary dropdown-toggle w-100" title="Link"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-link"></i></button>
+                        <div class="dropdown-menu" aria-labelledby="link">
+                            <a class="dropdown-item" id="externalLink">External Link</a>
+                            <a class="dropdown-item" id="emailLink">Email Link</a>
+                        </div>
+                        <button type="button" class="btn btn-secondary mr-0 ml-0 pr-0 pl-0" disabled></button>
+                        <button id="ul" type="button" class="btn btn-secondary w-100" title="Bullet Points" onclick="updateButton(this)"><i class="fa fa-list-ul"></i></button>
+                        <button id="ol" type="button" class="btn btn-secondary w-100" title="Numbered List" onclick="updateButton(this)"><i class="fa fa-list-ol"></i></button>
+                        <button type="button" class="btn btn-secondary mr-0 ml-0 pr-0 pl-0" disabled></button>
+                        <!-- <button id="undo" type="button" class="btn btn-secondary w-100" title="Undo"><i class="fa fa-undo" onclick="document.execCommand('undo')"></i></button>
+                        <button id="redo" type="button" class="btn btn-secondary w-100" title="Redo"><i class="fa fa-undo fa-flip-horizontal" onclick="document.execCommand('redo')"></i></button>
+                        <button type="button" class="btn btn-secondary mr-0 ml-0 pr-0 pl-0" disabled></button> -->
+                    
+                        <button id="style" type="button" class="btn btn-secondary dropdown-toggle w-100" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-edit"></i> Styles
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="style">
+                            <a class="dropdown-item" id="headerStyle">Header</a>
+                            <a class="dropdown-item" id="monospacedStyle">Monospaced</a>
+                        </div>
+                    </div>
+                    <textarea id="textArea" class="form-control" rows="10"> </textarea>
+                </div>
+        </div>
+    </div>
+</body>
+
+</html>

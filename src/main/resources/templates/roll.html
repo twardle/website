@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Roll the Dice</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <p th:text="${roll_string} + ': ' + ${roll} + '!'" />
+    <span th:if="${success != null}">
+        <span th:if="${success == true}">
+            <p>SUCCESS!</p>
+        </span>
+        <span th:if="${success == false}">
+            <p>FAILURE!</p>
+        </span>
+    </span>
+    <span th:if="${explode_num != null}">
+        <p th:text="'Exploded ' + ${explode_num} + ' Times!'" />
+    </span>
+    <span th:if="${rolls_list != null}">
+        <p th:text="'Rolls: ' + ${rolls_list}" />
+    </span>
+</body>
+</html>
