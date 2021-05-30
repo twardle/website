@@ -1,4 +1,4 @@
-package com.dnd.fudger;
+package com.website;
 
 import java.util.Random;
 import java.util.logging.Logger;
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class FudgerController {
+public class WebsiteController {
 
-    private final static Logger log = Logger.getLogger(FudgerController.class.getSimpleName());
+    private final static Logger log = Logger.getLogger(WebsiteController.class.getSimpleName());
 
 	@GetMapping("/roll")
 	public String roll(

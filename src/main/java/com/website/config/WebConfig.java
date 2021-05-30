@@ -1,4 +1,4 @@
-package com.dnd.fudger.config;
+package com.website.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
